@@ -1,0 +1,15 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /app
+spring:
+  mvc:
+    path match:
+      matching-strategy: ant_path_matcher
+  datasource:
+    password: admin
+    url: jdbc:postgresql://localhost:5432/cita
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: create-drop

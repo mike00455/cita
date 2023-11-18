@@ -29,7 +29,8 @@ public class RoleController {
     public ResponseEntity<List<RoleResponseDto>> getAllRoles(){
         List<Role> roles = roleService.getAllRoles();
         List<RoleResponseDto> roleResponseDtos = roles.stream()
-                .map(roleMapper::entityToDto).collect(Collectors.toList());
-        return ResponseEntity.status(HttpStatus.OK).body(roleResponseDtos);
+                .map(roleMapper::entityToResponseDto).toList();
+        return roleResponseDtos.isEmpty() ? ResponseEntity.status(HttpStatus.NO_CONTENT).build() :
+                ResponseEntity.status(HttpStatus.OK).body(roleResponseDtos);
     }
 }

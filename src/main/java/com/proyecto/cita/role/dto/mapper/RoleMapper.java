@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class RoleMapper {
 
-    public RoleResponseDto entityToDto(Role role){
+    public RoleResponseDto entityToResponseDto(Role role){
         return new RoleResponseDto(
                 role.getRoleId(),
                 role.getRoleName(),

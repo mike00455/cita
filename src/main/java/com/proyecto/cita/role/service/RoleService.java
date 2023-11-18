@@ -5,6 +5,7 @@ import com.proyecto.cita.role.repository.RoleRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class RoleService {
@@ -17,6 +18,10 @@ public class RoleService {
 
     public List<Role> getAllRoles() {
         return roleRepository.findAll();
+    }
+
+    public Role getRoleById(UUID id) {
+        return roleRepository.findById(id).orElse(null);
     }
 
 }

@@ -28,14 +28,29 @@ public class PersonService {
         return personRepository.findAll();
     }
 
-    public Person getPersonById(String id) {
-        return personRepository.findById(UUID.fromString(id)).orElse(null);
+    public Person getPersonById(UUID id) {
+        return personRepository.findById(id).orElse(null);
     }
 
     public Person savePerson(PersonRequestDto personRequestDto) {
         Person person = personMapper.requestDtoToEntity(personRequestDto);
-        Role role  = roleService.getRoleById(UUID.fromString(personRequestDto.getRoleId()));
+        Role role  = roleService.getRoleById(personRequestDto.getRoleId());
         person.setRole(role);
         return personRepository.save(person);
+    }
+
+    public Person updatePerson(PersonRequestDto personRequestDto, UUID id) {
+        Person person = personRepository.findById(id).orElse(null);
+        if (person != null) {
+            person.setPersonName(personRequestDto.getPersonName());
+            person.setPersonLastName(personRequestDto.getPersonLastName());
+            person.setPersonDocument(personRequestDto.getPersonDocument());
+            person.setPersonPhone(personRequestDto.getPersonPhone());
+            person.setPersonEmail(personRequestDto.getPersonEmail());
+            Role role  = roleService.getRoleById(personRequestDto.getRoleId());
+            person.setRole(role);
+            return personRepository.save(person);
+        }
+        return null;
     }
 }

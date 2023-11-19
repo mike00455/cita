@@ -1,41 +1,32 @@
-package com.proyecto.cita.incident.entity;
+package com.proyecto.cita.incident.dto.response;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import org.hibernate.annotations.UuidGenerator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Entity
-@Table(name = "incident", schema = "public")
-public class Incident {
+public class IncidentResponseDto {
 
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @UuidGenerator
-    @Column(name = "incident_id", nullable = false)
+    @JsonProperty(value = "incident_id")
     private UUID incidentId;
 
-    @Column(name = "incident_description", nullable = false)
+    @JsonProperty(value = "incident_description")
     private String incidentDescription;
 
-    @Column(name = "incident_status", nullable = false)
+    @JsonProperty(value = "incident_status")
     private String incidentStatus;
 
-    @Column(name = "incident_video")
+    @JsonProperty(value = "incident_video")
     private String incidentVideo;
 
-    @Column(name = "incident_date", nullable = false)
-    private LocalDateTime incidentDate;
+    @JsonProperty(value = "incident_date")
+    private String incidentDate;
 
-    public Incident() {
+    public IncidentResponseDto() {
     }
 
-    public Incident(String incidentDescription, String incidentStatus, String incidentVideo, LocalDateTime incidentDate) {
+    public IncidentResponseDto(UUID incidentId, String incidentDescription, String incidentStatus, String incidentVideo,
+                               String incidentDate) {
+        this.incidentId = incidentId;
         this.incidentDescription = incidentDescription;
         this.incidentStatus = incidentStatus;
         this.incidentVideo = incidentVideo;
@@ -74,11 +65,11 @@ public class Incident {
         this.incidentVideo = incidentVideo;
     }
 
-    public LocalDateTime getIncidentDate() {
+    public String getIncidentDate() {
         return incidentDate;
     }
 
-    public void setIncidentDate(LocalDateTime incidentDate) {
+    public void setIncidentDate(String incidentDate) {
         this.incidentDate = incidentDate;
     }
 }

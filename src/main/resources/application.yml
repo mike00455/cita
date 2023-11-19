@@ -12,4 +12,15 @@ spring:
     username: postgres
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: michael00455@gmail.com
+    password: xfruryrqlozhpksb
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true

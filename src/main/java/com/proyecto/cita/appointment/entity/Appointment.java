@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -19,7 +19,7 @@ public class Appointment {
 
     @Id
     @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid")
+    @UuidGenerator
     @Column(name = "appointment_id", nullable = false)
     private UUID appointmentId;
 
@@ -29,6 +29,14 @@ public class Appointment {
     @ManyToOne
     @JoinColumn(name = "person_id", nullable = false)
     private Person person;
+
+    public Appointment() {
+    }
+
+    public Appointment(LocalDateTime appointmentDate, Person person) {
+        this.appointmentDate = appointmentDate;
+        this.person = person;
+    }
 
     public UUID getAppointmentId() {
         return appointmentId;

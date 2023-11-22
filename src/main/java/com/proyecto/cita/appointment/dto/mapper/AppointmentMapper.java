@@ -22,7 +22,9 @@ public class AppointmentMapper {
     public AppointmentResponse entityToResponseDtos(Appointment appointment) {
         return new AppointmentResponse(
                 appointment.getAppointmentId(),
-                FormatDate.localDateTimeToString(appointment.getAppointmentDate())
+                FormatDate.localDateTimeToString(appointment.getAppointmentDate()),
+                appointment.getPerson().getPersonName(),
+                appointment.getPerson().getPersonLastName()
         );
     }
 
